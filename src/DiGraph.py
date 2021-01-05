@@ -1,9 +1,9 @@
 from src import GraphInterface
 from src import Node
-import Edge
+from src import Edge
 
 
-class DiGraph(GraphInterface):
+class DiGraph(GraphInterface.GraphInterface):
 
     def __init__(self):
         self._nodes = {}
@@ -22,36 +22,44 @@ class DiGraph(GraphInterface):
         return self._nodes
 
     def all_in_edges_of_node(self, id1: int):
-        return self._inEdges[id1]
+        if id1 in self._inEdges:
+            return self._inEdges[id1]
+        return None
 
     def all_out_edges_of_node(self, id1: int):
-        return self._outEdges[id1]
+        if id1 in self._outEdges:
+            return self._outEdges[id1]
+        return None
 
     def get_mc(self):
         return self._mc
 
     def add_node(self, node_id: int, pos: tuple = None):
-        if self._nodes[node_id] is not None:
-            return False
-        new_node = Node.Node(node_id, pos)
-        self._nodes[node_id] = new_node
-        self.mc += 1
-        return True
+        if not (node_id in self._nodes):
+            new_node = Node.Node(node_id, pos)
+            self._nodes[node_id] = new_node
+            self._mc += 1
+            return True
+        return False
 
     def add_edge(self, id1: int, id2: int, weight: float):
-        if self._nodes[id1] is None or self._nodes[id2] is None:
+        if not (id1 in self._nodes) or not (id2 in self._nodes):
             return False
         if id1 == id2:
             return False
 
-        if self._outEdges[id1][id2] is not None:
+        if id1 in self._outEdges and id2 in self._outEdges[id1]:
             return False
-        new_edge = Edge.Edge(id1, id2, weight)
-        self._outEdges[id1][id2] = new_edge
-        self._inEdges[id2][id1] = new_edge
 
+        if not (id1 in self._outEdges):
+            self._outEdges[id1] = {}
+        if not (id2 in self._inEdges):
+            self._inEdges[id2] = {}
+
+        self._outEdges[id1][id2] = weight
+        self._inEdges[id2][id1] = weight
         self._edgesCount += 1
-        self.mc += 1
+        self._mc += 1
         return True
 
     def remove_node(self, node_id: int):
@@ -75,9 +83,10 @@ class DiGraph(GraphInterface):
         return True
 
     def remove_edge(self, node_id1: int, node_id2: int):
-        if self._outEdges[node_id1][node_id2] is None:
-            return False
-        del self._outEdges[node_id1][node_id2]
-        del self._inEdges[node_id2][node_id1]
-        self._edgesCount -= 1
-        self._mc += 1
+        if node_id1 in self._outEdges and node_id2 in self._outEdges[node_id1]:
+            del self._outEdges[node_id1][node_id2]
+            del self._inEdges[node_id2][node_id1]
+            self._edgesCount -= 1
+            self._mc += 1
+            return True
+        return False
