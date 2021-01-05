@@ -22,6 +22,7 @@ class TestGraph(unittest.TestCase):
 
     def addEdgeTest(self):
         graph = self.createGraph()
+        self.assertEqual(graph.get_mc(), 11)
 
         self.assertEqual(graph.e_size(), 6)
         graph.add_edge(0, 4, 4)
@@ -29,7 +30,7 @@ class TestGraph(unittest.TestCase):
         graph.add_edge(3, 0, 2)
         graph.add_edge(3, 4, 6)
         self.assertEqual(graph.e_size(), 8)
-        self.assertEqual(graph.get_mc(),)
+        self.assertEqual(graph.get_mc(), 13)
 
     def removeEdgeTest(self):
         graph = self.createGraph()
@@ -51,6 +52,7 @@ class TestGraph(unittest.TestCase):
         self.assertEqual(graph.e_size(), 4)
         res = graph.all_out_edges_of_node(1).get(4)
         self.assertEqual(res, None)
+        self.assertEqual(graph.get_mc(), 13)
 
     def removeNodeTest(self):
         graph = self.createGraph()
@@ -62,10 +64,12 @@ class TestGraph(unittest.TestCase):
         self.assertIsNone(graph.all_out_edges_of_node(0).get(2))
         self.assertIsNone(graph.all_out_edges_of_node(3).get(2))
         self.assertIsNone(graph.all_in_edges_of_node(1).get(2))
+        self.assertEqual(graph.get_mc(), 15)
 
     def addNodeTest(self):
         graph = self.createGraph()
         graph.add_node(6, (1, 2, 2))
         graph.add_node(7, (1, 2, 2))
         self.assertEqual(graph.v_size(), 7)
+        self.assertEqual(graph.get_mc(), 13)
 
