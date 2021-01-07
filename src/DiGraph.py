@@ -1,6 +1,5 @@
 from src import GraphInterface
 from src import Node
-from src import Edge
 
 
 class DiGraph(GraphInterface.GraphInterface):
@@ -90,3 +89,4 @@ class DiGraph(GraphInterface.GraphInterface):
             self._mc += 1
             return True
         return False
+
