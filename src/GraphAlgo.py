@@ -5,6 +5,8 @@ from src import GraphAlgoInterface
 from jsonEncoders import graphEncoder
 import json
 
+from src.DiGraph import DiGraph
+
 
 class GraphALgo(GraphAlgoInterface):
 
@@ -59,7 +61,25 @@ class GraphALgo(GraphAlgoInterface):
     def connected_component(self, id1: int) -> list:
         pass
 
+    def load_from_json(self, file_name: str):
+        with open(file_name) as complex_data:
+            data = complex_data.read()
+            self.graph = json.loads(data, object_hook=self.deserialize_objects)
+
     def save_to_json(self, file_name: str):
         with open(file_name, 'w') as f:
-            json.dump(self.graph, f, cls=graphEncoder.GraphEncoder, indent=4)
+            json.dump(self.graph, f, cls=graphEncoder.GraphSerialize, indent=4)
 
+    @staticmethod
+    def deserialize_objects(obj):
+        if 'Edges' in obj and 'Nodes' in obj:
+            graph_result = DiGraph()
+
+            for node in obj['Nodes']:
+                graph_result.add_node(node['id'], node['pos'])
+
+            for edge in obj['Edges']:
+                graph_result.add_edge(edge['src'], edge['dest'], edge['w'])
+            return graph_result
+
+        return obj
