@@ -2,6 +2,8 @@ from abc import ABC
 
 from src import GraphInterface
 from src import GraphAlgoInterface
+from jsonEncoders import graphEncoder
+import json
 
 
 class GraphALgo(GraphAlgoInterface.GraphAlgoInterface, ABC):
@@ -21,6 +23,7 @@ class GraphALgo(GraphAlgoInterface.GraphAlgoInterface, ABC):
     # def load_from_json(self, file_name: str):
     #
     #
-    #
-    #
-    # def save_to_json(self, file_name: str):
+
+    def save_to_json(self, file_name: str):
+        with open(file_name, 'w') as f:
+            json.dump(self.graph, f, cls=graphEncoder.GraphEncoder, indent=4)

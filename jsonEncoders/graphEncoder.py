@@ -19,6 +19,14 @@ class GraphEncoder(json.JSONEncoder):
                         edges_array[counter]['dest'] = dest
                         counter += 1
 
-            return {'Edges': edges_array}
+            counter = 0
+            nodes_array = [dict() for x in range(o.v_size())]
+            for node in o.get_all_v():
+                nodes_array[counter] = {}
+                nodes_array[counter]['pos'] = o.get_all_v().get(node).pos
+                nodes_array[counter]['id'] = node
+                counter += 1
+
+            return {'Edges': edges_array, 'Nodes': nodes_array}
 
         raise TypeError(f'object {o} is not of type Digraph')
