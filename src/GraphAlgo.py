@@ -1,4 +1,5 @@
 import heapq as hq
+from typing import List
 
 from src.GraphInterface import GraphInterface
 from src import GraphAlgoInterface
@@ -59,7 +60,35 @@ class GraphALgo(GraphAlgoInterface):
                         hq.heappush(nodes, neighbor)
 
     def connected_component(self, id1: int) -> list:
-        pass
+        if id1 not in self.graph.get_all_v():
+            return []
+        visited = []
+        stack = []
+        self.dfs(self.graph, id1, visited, stack)
+        graph_revers = GraphInterface()
+        for i in stack:
+            for neighbor, w in self.graph.all_in_edges_of_node(i):
+                graph_revers.add_edge(neighbor.key, i, w)
+        self.dfs(graph_revers, id1, visited, stack)
+        return stack
+
+    def connected_components(self) -> List[list]:
+        if self.graph is None:
+            return []
+        scc = []
+        nodes = self.graph.get_all_v()
+        for i, n in nodes:
+            if i not in scc:
+                path = self.connected_component(i)
+                scc.append(path)
+        return scc
+
+    @staticmethod
+    def dfs(graph: GraphInterface, src: int, visited: list, stack: list):
+        for n, w in graph.all_out_edges_of_node(src):
+            if n.key not in visited:
+                dfs(n.key, visited, stack)
+        stack.insert(0, src)
 
     def load_from_json(self, file_name: str):
         with open(file_name) as complex_data:
