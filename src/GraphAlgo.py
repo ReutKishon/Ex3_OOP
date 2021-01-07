@@ -87,7 +87,7 @@ class GraphALgo(GraphAlgoInterface):
     def dfs(graph: GraphInterface, src: int, visited: list, stack: list):
         for n, w in graph.all_out_edges_of_node(src):
             if n.key not in visited:
-                dfs(n.key, visited, stack)
+                GraphALgo.dfs(n.key, visited, stack)
         stack.insert(0, src)
 
     def load_from_json(self, file_name: str):
