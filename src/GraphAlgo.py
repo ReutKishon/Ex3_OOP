@@ -3,9 +3,10 @@ from abc import ABC
 from src import GraphInterface
 from src import GraphAlgoInterface
 
+
 class GraphALgo(GraphAlgoInterface.GraphAlgoInterface, ABC):
 
-    def __init__(self, graph: GraphInterface = GraphInterface()):
+    def __init__(self, graph: GraphInterface = GraphInterface):
         self.graph = graph
 
     def get_graph(self) -> GraphInterface:
@@ -16,4 +17,10 @@ class GraphALgo(GraphAlgoInterface.GraphAlgoInterface, ABC):
             return float('inf'), []
         if id1 == id2:
             return 0.0, [id1]
-        
+
+    # def load_from_json(self, file_name: str):
+    #
+    #
+    #
+    #
+    # def save_to_json(self, file_name: str):
