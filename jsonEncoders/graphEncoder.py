@@ -3,7 +3,7 @@ from src import DiGraph
 from src import GraphInterface
 
 
-class GraphEncoder(json.JSONEncoder):
+class GraphSerialize(json.JSONEncoder):
     def default(self, o):
         if isinstance(o, GraphInterface.GraphInterface):
             counter = 0
@@ -30,3 +30,25 @@ class GraphEncoder(json.JSONEncoder):
             return {'Edges': edges_array, 'Nodes': nodes_array}
 
         raise TypeError(f'object {o} is not of type Digraph')
+
+
+class GraphDeserialize(json.JSONDecoder):
+    def __init__(self, *args, **kwargs):
+        json.JSONDecoder.__init__(self, object_hook=self.object_hook, *args, **kwargs)
+
+    @staticmethod
+    def object_hook(dct):
+        graph = DiGraph.DiGraph()
+        if 'Nodes' in dct:
+            for node in dct['Nodes']:
+                graph.add_node(node.key)
+
+        if 'Edges' in dct:
+            for edge in dct['Edges']:
+                src = edge['src']
+                dest = edge['dest']
+                weight = edge['w']
+                graph.add_edge(src, dest, weight)
+                return graph
+
+        return dct

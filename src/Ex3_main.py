@@ -46,6 +46,11 @@ def check0():
 
     g_algo = GraphAlgo.GraphALgo(g)
     g_algo.save_to_json('graph.json')
+
+    g_algo2 = GraphAlgo.GraphALgo()
+    g_algo2.load_from_json('graph.json')
+    g_algo2.save_to_json('graphAlgo2.json')
+
     # print(g_algo.shortest_path(0, 3))
     # g_algo.plot_graph()
 
