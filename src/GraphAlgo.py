@@ -33,23 +33,14 @@ class GraphALgo(GraphAlgoInterface.GraphAlgoInterface, ABC):
 
     @staticmethod
     def deserialize_objects(obj):
-
         if 'Edges' in obj and 'Nodes' in obj:
             graph_result = DiGraph()
-            
+
             for node in obj['Nodes']:
                 graph_result.add_node(node['id'], node['pos'])
-                
+
             for edge in obj['Edges']:
                 graph_result.add_edge(edge['src'], edge['dest'], edge['w'])
             return graph_result
-                
-        
+
         return obj
-        # if 'id' in obj and 'pos' in obj:
-        #     graph_result.add_node(obj['id'], obj['pos'])
-
-        # if 'src' in obj and 'dest' in obj and 'w' in obj:
-        #     graph_result.add_edge(obj['src'], obj['dest'], obj['w'])
-
-        # return graph_result
