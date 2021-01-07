@@ -13,3 +13,11 @@ class Node:
 
     def set_pos(self, pos: tuple):
         self.pos = pos
+
+    def __cmp__(self, other):
+        if other == self:
+            return 0
+        elif self > other:
+            return 1
+        else:
+            return -1

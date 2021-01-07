@@ -12,29 +12,29 @@ class DiGraph(GraphInterface.GraphInterface):
         self._edgesCount = 0
         self._mc = 0
 
-    def v_size(self):
+    def v_size(self) -> int:
         return len(self._nodes)
 
-    def e_size(self):
+    def e_size(self) -> int:
         return self._edgesCount
 
-    def get_all_v(self):
+    def get_all_v(self) -> dict:
         return self._nodes
 
-    def all_in_edges_of_node(self, id1: int):
+    def all_in_edges_of_node(self, id1: int) -> dict:
         if id1 in self._inEdges:
             return self._inEdges[id1]
         return None
 
-    def all_out_edges_of_node(self, id1: int):
+    def all_out_edges_of_node(self, id1: int) -> dict:
         if id1 in self._outEdges:
             return self._outEdges[id1]
         return None
 
-    def get_mc(self):
+    def get_mc(self) -> int:
         return self._mc
 
-    def add_node(self, node_id: int, pos: tuple = None):
+    def add_node(self, node_id: int, pos: tuple = None) -> bool:
         if not (node_id in self._nodes):
             new_node = Node.Node(node_id, pos)
             self._nodes[node_id] = new_node
@@ -42,7 +42,7 @@ class DiGraph(GraphInterface.GraphInterface):
             return True
         return False
 
-    def add_edge(self, id1: int, id2: int, weight: float):
+    def add_edge(self, id1: int, id2: int, weight: float) -> bool:
         if not (id1 in self._nodes) or not (id2 in self._nodes):
             return False
         if id1 == id2:
@@ -62,7 +62,7 @@ class DiGraph(GraphInterface.GraphInterface):
         self._mc += 1
         return True
 
-    def remove_node(self, node_id: int):
+    def remove_node(self, node_id: int) -> bool:
         if self._nodes[node_id] is None:
             return False
         self._mc += 1
@@ -82,7 +82,7 @@ class DiGraph(GraphInterface.GraphInterface):
         del self._nodes[node_id]
         return True
 
-    def remove_edge(self, node_id1: int, node_id2: int):
+    def remove_edge(self, node_id1: int, node_id2: int) -> bool:
         if node_id1 in self._outEdges and node_id2 in self._outEdges[node_id1]:
             del self._outEdges[node_id1][node_id2]
             del self._inEdges[node_id2][node_id1]
