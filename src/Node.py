@@ -17,7 +17,7 @@ class Node:
     def __cmp__(self, other):
         if other == self:
             return 0
-        elif self > other:
+        elif self.tag > other.tag:
             return 1
         else:
             return -1
