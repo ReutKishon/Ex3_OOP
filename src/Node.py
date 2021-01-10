@@ -14,10 +14,13 @@ class Node:
     def set_pos(self, pos: tuple):
         self.pos = pos
 
-    def __cmp__(self, other):
-        if other == self:
-            return 0
-        elif self.tag > other.tag:
-            return 1
-        else:
-            return -1
+    def __lt__(self, other):
+        return self.tag < other.tag
+
+    # def __eq__(self, other):
+    #     # if self.tag > other.tag:
+    #     #     return self
+    #     # elif self.tag < other.tag:
+    #     #     return other
+    #     # else:
+    #     return self.tag == other.tag
