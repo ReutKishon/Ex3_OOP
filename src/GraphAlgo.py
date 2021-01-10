@@ -146,3 +146,4 @@ if __name__ == '__main__':
     g.add_node(4, (9, 7, 0))
     ga = GraphALgo(graph=g)
     ga.plot_graph()
+
