@@ -72,42 +72,48 @@ class TestGraphAlgo(unittest.TestCase):
         self.assertEqual(sp, spd[1])
 
     def test_connected_component(self):
-        scc1 = self.ga.connected_component(2)       # Node in the graph.
+        scc1 = self.ga.connected_component(2)  # Node in the graph.
         except_scc1 = 3
         self.assertEqual(except_scc1, len(scc1))
 
-        scc2 = self.ga.connected_component(5)       # Node in the graph.
+        scc2 = self.ga.connected_component(5)  # Node in the graph.
         except_scc2 = 4
         self.assertEqual(except_scc2, len(scc2))
 
-        scc3 = self.ga.connected_component(7)       # Node in the graph.
+        scc3 = self.ga.connected_component(7)  # Node in the graph.
         except_scc3 = 4
         self.assertEqual(except_scc3, len(scc3))
 
-        scc4 = self.ga.connected_component(13)      # Node that not in the graph.
+        scc4 = self.ga.connected_component(13)  # Node that not in the graph.
         except_scc4 = 0
         self.assertEqual(except_scc4, len(scc4))
 
     def test_connected_components(self):
         list_scc = self.ga.connected_components()
         print(list_scc)
-        num_scc1 = len(list_scc)                    # graph with nodes.
+        num_scc1 = len(list_scc)  # graph with nodes.
         except_scc1 = 3
         self.assertEqual(except_scc1, num_scc1)
 
         ga2 = GraphALgo()
-        num_scc2 = ga2.connected_components()       # The graph_algo is None.
+        num_scc2 = ga2.connected_components()  # The graph_algo is None.
         except_scc2 = []
         self.assertEqual(except_scc2, num_scc2)
 
         g2 = None
         ga2 = GraphALgo(g2)
-        num_scc2 = ga2.connected_components()       # The graph is None.
+        num_scc2 = ga2.connected_components()  # The graph is None.
         except_scc2 = []
         self.assertEqual(except_scc2, num_scc2)
 
         g2 = DiGraph()
         ga3 = GraphALgo(g2)
-        num_scc3 = ga3.connected_components()       # Empty graph.
+        num_scc3 = ga3.connected_components()  # Empty graph.
         except_scc3 = []
         self.assertEqual(except_scc3, num_scc3)
+
+    def test_save_to_json(self):
+        self.ga.save_to_json('graph.json')
+        g_algo2 = GraphALgo()
+        g_algo2.load_from_json('graph.json')
+        self.assertEqual(self.ga.graph, g_algo2.graph)

@@ -90,3 +90,24 @@ class DiGraph(GraphInterface.GraphInterface):
             return True
         return False
 
+    def __eq__(self, other):
+        if isinstance(other, DiGraph):
+            if self.e_size() != other.e_size() or self.v_size() != other.v_size():
+                return False
+
+        for node in self._nodes:
+            v = other.get_all_v()[node]
+            if v is None:
+                return False
+            else:
+                if self._nodes[node].pos is not None and v.pos is not None:
+                    if self._nodes[node].pos[0] != v.pos[0] or self._nodes[node].pos[1] != v.pos[1]:
+                        return False
+            for neighbor in self.all_out_edges_of_node(node).keys():
+                if other.get_all_v().get(neighbor) is None:
+                    return False
+                if self.all_out_edges_of_node(node).get(neighbor) != other.all_out_edges_of_node(node).get(
+                        neighbor):
+                    return False
+
+        return True
