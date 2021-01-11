@@ -77,7 +77,7 @@ def check2():
       :return:
       """
     g_algo = GraphAlgo()
-    file = '../data/G_10_80_1.json'
+    file = '../data/A5'
     g_algo.load_from_json(file)
     g_algo.get_graph().remove_edge(13, 14)
     g_algo.save_to_json(file + "_edited")
@@ -93,9 +93,116 @@ def check2():
     print(g_algo.connected_components())
     g_algo.plot_graph()
 
+def check3():
+    g_algo = GraphAlgo()
+    file = '../data/G_10_80_1.json'
+    g_algo.load_from_json(file)
+    start1 = timeit.default_timer()
+    dist, path = g_algo.shortest_path(8, 2)
+    print(dist, path)
+    end1 = timeit.default_timer()
+    print(end1 - start1)
+    start2 = timeit.default_timer()
+    print(g_algo.connected_component(9))
+    end2 = timeit.default_timer()
+    print(end2 - start2)
+    start3 = timeit.default_timer()
+    print(g_algo.connected_components())
+    end3 = timeit.default_timer()
+    print(end3 - start3)
+
+def check4():
+    g_algo = GraphAlgo()
+    file = '../data/G_100_800_1.json'
+    g_algo.load_from_json(file)
+    start1 = timeit.default_timer()
+    dist, path = g_algo.shortest_path(13, 99)
+    print(dist, path)
+    end1 = timeit.default_timer()
+    print(end1 - start1)
+    start2 = timeit.default_timer()
+    print(g_algo.connected_component(54))
+    end2 = timeit.default_timer()
+    print(end2 - start2)
+    start3 = timeit.default_timer()
+    print(g_algo.connected_components())
+    end3 = timeit.default_timer()
+    print(end3 - start3)
+
+def check5():
+    g_algo = GraphAlgo()
+    file = '../data/G_1000_8000_1.json'
+    g_algo.load_from_json(file)
+    start1 = timeit.default_timer()
+    dist, path = g_algo.shortest_path(135, 732)
+    print(dist, path)
+    end1 = timeit.default_timer()
+    print(end1 - start1)
+    start2 = timeit.default_timer()
+    print(g_algo.connected_component(825))
+    end2 = timeit.default_timer()
+    print(end2 - start2)
+    start3 = timeit.default_timer()
+    print(g_algo.connected_components())
+    end3 = timeit.default_timer()
+    print(end3 - start3)
+
+def check6():
+    g_algo = GraphAlgo()
+    file = '../data/G_10000_80000_1.json'
+    g_algo.load_from_json(file)
+    start1 = timeit.default_timer()
+    dist, path = g_algo.shortest_path(5937, 2100)
+    print(dist, path)
+    end1 = timeit.default_timer()
+    print(end1 - start1)
+    start2 = timeit.default_timer()
+    print(g_algo.connected_component(3000))
+    end2 = timeit.default_timer()
+    print(end2 - start2)
+    start3 = timeit.default_timer()
+    print(g_algo.connected_components())
+    end3 = timeit.default_timer()
+    print(end3 - start3)
+
+def check7():
+    g_algo = GraphAlgo()
+    file = '../data/G_20000_160000_1.json'
+    g_algo.load_from_json(file)
+    start1 = timeit.default_timer()
+    dist, path = g_algo.shortest_path(493, 17500)
+    print(dist, path)
+    end1 = timeit.default_timer()
+    print(end1 - start1)
+    start2 = timeit.default_timer()
+    print(g_algo.connected_component(900))
+    end2 = timeit.default_timer()
+    print(end2 - start2)
+    start3 = timeit.default_timer()
+    print(g_algo.connected_components())
+    end3 = timeit.default_timer()
+    print(end3 - start3)
+
+def check8():
+    g_algo = GraphAlgo()
+    file = '../data/G_30000_240000_1.json'
+    g_algo.load_from_json(file)
+    start1 = timeit.default_timer()
+    dist, path = g_algo.shortest_path(9, 25000)
+    print(dist, path)
+    end1 = timeit.default_timer()
+    print(end1 - start1)
+    start2 = timeit.default_timer()
+    print(g_algo.connected_component(20000))
+    end2 = timeit.default_timer()
+    print(end2 - start2)
+    start3 = timeit.default_timer()
+    print(g_algo.connected_components())
+    end3 = timeit.default_timer()
+    print(end3 - start3)
 
 if __name__ == '__main__':
-    start = timeit.default_timer()
-    check()
-    end = timeit.default_timer()
-    print(end-start)
+    # start = timeit.default_timer()
+    check8()
+    # end = timeit.default_timer()
+    # print(end-start)

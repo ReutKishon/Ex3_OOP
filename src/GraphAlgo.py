@@ -29,7 +29,7 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
         if id1 == id2:
             return 0.0, [id1]
         prev = {k: None for k in self.graph.get_all_v().keys()}
-        self.dijkstra(id1, prev)
+        self.dijkstra(id1, id2, prev)
         if self.graph.get_all_v().get(id2).tag is float('inf'):
             return float('inf'), []
         path = []
@@ -42,7 +42,7 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
             path.insert(0, node0)
         return self.graph.get_all_v().get(id2).tag, path
 
-    def dijkstra(self, src: int, prev: dict):
+    def dijkstra(self, src: int, dest: int,  prev: dict):
         visited = []
         nodes = []
         for n in self.graph.get_all_v().values():
@@ -54,6 +54,8 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
         hq.heapify(nodes)
         while nodes:
             rm = hq.heappop(nodes)
+            if rm.key == dest:
+                return
             visited.append(rm)
             if self.graph.all_out_edges_of_node(rm.key) is not None:
                 for neighbor, weighted in self.graph.all_out_edges_of_node(rm.key).items():
