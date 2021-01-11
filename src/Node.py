@@ -16,11 +16,3 @@ class Node:
 
     def __lt__(self, other):
         return self.tag < other.tag
-
-    # def __eq__(self, other):
-    #     # if self.tag > other.tag:
-    #     #     return self
-    #     # elif self.tag < other.tag:
-    #     #     return other
-    #     # else:
-    #     return self.tag == other.tag
