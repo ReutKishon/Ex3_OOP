@@ -135,11 +135,22 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
     def plot_graph(self) -> None:
         x = []
         y = []
+        z = []
         for i, n in self.graph.get_all_v().items():
             x.append(n.pos[0])
             y.append(n.pos[1])
+            z.append(n.pos[2])
         plt.plot(x, y, "o")
+        for i, n in self.graph.get_all_v().items():
+            if self.graph.all_out_edges_of_node(i) is not None:
+                for j in self.graph.all_out_edges_of_node(i).keys():
+                    d = self.graph.get_all_v().get(j)
+                    plt.arrow(n.pos[0], n.pos[1], d.pos[0]-n.pos[0], d.pos[1]-n.pos[1],
+                              head_width=0.1, head_length=0.2)
         plt.show()
+
+    # def distance(self, n1: tuple, n2: tuple):
+    #     return (((n1[0] - n2[0]) ** 2) + ((n1[1] - n2[1]) ** 2) + ((n1[2] - n2[2]) ** 2)) ** 0.5
 
 
 # if __name__ == '__main__':
@@ -149,6 +160,10 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
 #     g.add_node(2, (3, 5, 0))
 #     g.add_node(3, (5, 2, 0))
 #     g.add_node(4, (9, 7, 0))
+#     g.add_edge(0, 1, 1)
+#     g.add_edge(1, 2, 5)
+#     g.add_edge(2, 1, 1.2)
+#     g.add_edge(0, 4, 8)
+#     g.add_edge(3, 1, 2)
 #     ga = GraphAlgo(graph=g)
 #     ga.plot_graph()
-
