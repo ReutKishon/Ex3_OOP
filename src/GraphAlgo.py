@@ -158,7 +158,7 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
                         if y not in random_poses[x]:
                             random_poses[x][y] = {}
                         if z not in random_poses[x][y]:
-                            random_poses[x][y] = True
+                            random_poses[x][y] = z
                         node.set_pos((x, y, z))
                         break
 
@@ -172,7 +172,7 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
                     if y not in random_poses[x]:
                         random_poses[x][y] = {}
                     if z not in random_poses[x][y]:
-                        random_poses[x][y] = True
+                        random_poses[x][y] = z
 
             plt.plot(x, y, 'ro')
             plt.annotate(node.key,  # this is the text
