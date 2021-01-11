@@ -1,5 +1,8 @@
 import heapq as hq
 from typing import List
+
+import ax as ax
+
 from jsonEncoders import graphEncoder
 import json
 
@@ -42,7 +45,7 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
             path.insert(0, node0)
         return self.graph.get_all_v().get(id2).tag, path
 
-    def dijkstra(self, src: int, dest: int,  prev: dict):
+    def dijkstra(self, src: int, dest: int, prev: dict):
         visited = []
         nodes = []
         for n in self.graph.get_all_v().values():
@@ -135,17 +138,57 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
         return obj
 
     def plot_graph(self) -> None:
-        x = []
-        y = []
-        z = []
-        for i, n in self.graph.get_all_v().items():
-            x.append(n.pos[0])
-            y.append(n.pos[1])
-            z.append(n.pos[2])
-        plt.plot(x, y, "o")
-        for i, n in self.graph.get_all_v().items():
-            if self.graph.all_out_edges_of_node(i) is not None:
-                for j in self.graph.all_out_edges_of_node(i).keys():
-                    d = self.graph.get_all_v().get(j)
-                    plt.arrow(n.pos[0], n.pos[1], d.pos[0]-n.pos[0], d.pos[1]-n.pos[1])
+        plt.title('Graph')
+        random_poses = {}
+
+        x = y = z = 0
+        for node in self.graph.get_all_v().values():
+            if node.pos is None:
+                while True:
+                    x_r = np.random.rand(1)
+                    y_r = np.random.rand(1)
+                    z_r = np.random.rand(1)
+                    x = x_r[0]
+                    y = y_r[0]
+                    z = z_r[0]
+
+                    if x not in random_poses or y not in random_poses[x] or z not in random_poses[x][y]:
+                        if x not in random_poses:
+                            random_poses[x] = {}
+                        if y not in random_poses[x]:
+                            random_poses[x][y] = {}
+                        if z not in random_poses[x][y]:
+                            random_poses[x][y] = True
+                        node.set_pos((x, y, z))
+                        break
+
+            else:
+                x = node.pos[0]
+                y = node.pos[1]
+                z = node.pos[2]
+                if x not in random_poses or y not in random_poses[x] or z not in random_poses[x][y]:
+                    if x not in random_poses:
+                        random_poses[x] = {}
+                    if y not in random_poses[x]:
+                        random_poses[x][y] = {}
+                    if z not in random_poses[x][y]:
+                        random_poses[x][y] = True
+
+            plt.plot(x, y, 'ro')
+            plt.annotate(node.key,  # this is the text
+                         (x, y),  # this is the point to label
+                         textcoords="offset points",  # how to position the text
+                         xytext=(0, 10),  # distance from text to points (x,y)
+                         ha='center')  # horizontal alignment can be left, right or center
+
+        for node in self.graph.get_all_v().values():
+            for dest in self.graph.all_out_edges_of_node(node.key).keys():
+                plt.annotate("",
+                             xy=(node.pos[0], node.pos[1]), xycoords='data',
+                             xytext=(self.graph.get_all_v()[dest].pos[0],
+                                     self.graph.get_all_v().get(dest).pos[1]), textcoords='data',
+                             arrowprops=dict(arrowstyle="->",
+                                             connectionstyle="arc3"),
+                             )
+
         plt.show()
