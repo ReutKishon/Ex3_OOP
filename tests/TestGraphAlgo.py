@@ -1,6 +1,6 @@
 import unittest
 
-from src.GraphAlgo import GraphALgo
+from src.GraphAlgo import GraphAlgo
 from src.DiGraph import DiGraph
 
 
@@ -33,7 +33,7 @@ class TestGraphAlgo(unittest.TestCase):
         cls.g.add_edge(1, 3, 18.0)
         cls.g.add_edge(9, 5, 2.0)
 
-        cls.ga = GraphALgo(graph=cls.g)
+        cls.ga = GraphAlgo(graph=cls.g)
 
     def test_shortest_path(self):
         spd = self.ga.shortest_path(1, 3)  # Path between 2 node that in the graph and connected.
@@ -95,25 +95,25 @@ class TestGraphAlgo(unittest.TestCase):
         except_scc1 = 3
         self.assertEqual(except_scc1, num_scc1)
 
-        ga2 = GraphALgo()
+        ga2 = GraphAlgo()
         num_scc2 = ga2.connected_components()  # The graph_algo is None.
         except_scc2 = []
         self.assertEqual(except_scc2, num_scc2)
 
         g2 = None
-        ga2 = GraphALgo(g2)
+        ga2 = GraphAlgo(g2)
         num_scc2 = ga2.connected_components()  # The graph is None.
         except_scc2 = []
         self.assertEqual(except_scc2, num_scc2)
 
         g2 = DiGraph()
-        ga3 = GraphALgo(g2)
+        ga3 = GraphAlgo(g2)
         num_scc3 = ga3.connected_components()  # Empty graph.
         except_scc3 = []
         self.assertEqual(except_scc3, num_scc3)
 
     def test_save_to_json(self):
         self.ga.save_to_json('graph.json')
-        g_algo2 = GraphALgo()
+        g_algo2 = GraphAlgo()
         g_algo2.load_from_json('graph.json')
         self.assertEqual(self.ga.graph, g_algo2.graph)

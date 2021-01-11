@@ -12,7 +12,7 @@ from src import GraphAlgoInterface
 from src.DiGraph import DiGraph
 
 
-class GraphALgo(GraphAlgoInterface.GraphAlgoInterface):
+class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
 
     def __init__(self, graph: GraphInterface = None):
         self.graph = graph
@@ -137,13 +137,13 @@ class GraphALgo(GraphAlgoInterface.GraphAlgoInterface):
         plt.show()
 
 
-if __name__ == '__main__':
-    g = DiGraph()
-    g.add_node(0, (1, 3, 0))
-    g.add_node(1, (2, 6, 0))
-    g.add_node(2, (3, 5, 0))
-    g.add_node(3, (5, 2, 0))
-    g.add_node(4, (9, 7, 0))
-    ga = GraphALgo(graph=g)
-    ga.plot_graph()
+# if __name__ == '__main__':
+#     g = DiGraph()
+#     g.add_node(0, (1, 3, 0))
+#     g.add_node(1, (2, 6, 0))
+#     g.add_node(2, (3, 5, 0))
+#     g.add_node(3, (5, 2, 0))
+#     g.add_node(4, (9, 7, 0))
+#     ga = GraphAlgo(graph=g)
+#     ga.plot_graph()
 
