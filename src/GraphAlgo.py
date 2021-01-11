@@ -74,8 +74,9 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
         for i in scc:
             graph_revers.add_node(i)
         for i in scc:
-            for neighbor, w in self.graph.all_out_edges_of_node(i).items():
-                graph_revers.add_edge(neighbor, i, w)
+            if self.graph.all_out_edges_of_node(i) is not None:
+                for neighbor, w in self.graph.all_out_edges_of_node(i).items():
+                    graph_revers.add_edge(neighbor, i, w)
         scc = []
         self.bfs(graph_revers, id1, scc)
         return scc
@@ -98,10 +99,11 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
         visited = [src]
         while q:
             rm = q.pop(0)
-            for n in graph.all_out_edges_of_node(rm).keys():
-                if n not in visited:
-                    visited.append(n)
-                    q.append(n)
+            if graph.all_out_edges_of_node(rm) is not None:
+                for n in graph.all_out_edges_of_node(rm).keys():
+                    if n not in visited:
+                        visited.append(n)
+                        q.append(n)
             scc.append(rm)
 
     def load_from_json(self, file_name: str):
@@ -119,7 +121,10 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
             graph_result = DiGraph()
 
             for node in obj['Nodes']:
-                graph_result.add_node(node['id'], node['pos'])
+                if 'pos' in obj['Nodes']:
+                    graph_result.add_node(node['id'], node['pos'])
+                else:
+                    graph_result.add_node(node['id'])
 
             for edge in obj['Edges']:
                 graph_result.add_edge(edge['src'], edge['dest'], edge['w'])
