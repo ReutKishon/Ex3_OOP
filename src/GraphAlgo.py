@@ -182,13 +182,15 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
                          ha='center')  # horizontal alignment can be left, right or center
 
         for node in self.graph.get_all_v().values():
-            for dest in self.graph.all_out_edges_of_node(node.key).keys():
-                plt.annotate("",
-                             xy=(node.pos[0], node.pos[1]), xycoords='data',
-                             xytext=(self.graph.get_all_v()[dest].pos[0],
-                                     self.graph.get_all_v().get(dest).pos[1]), textcoords='data',
-                             arrowprops=dict(arrowstyle="->",
-                                             connectionstyle="arc3"),
-                             )
+            if self.graph.all_out_edges_of_node(node.key) is not None:
+                for dest in self.graph.all_out_edges_of_node(node.key).keys():
+                    plt.annotate("",
+                                 xy=(self.graph.get_all_v()[dest].pos[0],
+                                     self.graph.get_all_v().get(dest).pos[1]), xycoords='data',
+                                 xytext=(node.pos[0], node.pos[1]), textcoords='data',
+                                 arrowprops=dict(arrowstyle="->",
+                                                 color='blue',
+                                                 connectionstyle="arc3"),
+                                 )
 
         plt.show()
