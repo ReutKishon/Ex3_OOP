@@ -29,6 +29,6 @@ The algorithms we were required to implement are:
 
 examples of graph plot:
 ![graph1](/graph1.jpeg =100x20?raw=true "Optional Title")
-
+![](/graph1.jpeg =100x20)
 ![graph2](/graph2.jpeg =100x20?raw=true "Optional Title")
 
