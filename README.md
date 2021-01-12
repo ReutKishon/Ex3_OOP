@@ -1,4 +1,4 @@
-****Ex3****
+# Ex3
 
 Our project is about directed weighted graph implementation, and a list of algorithms that operate on graphs.
 
@@ -6,7 +6,7 @@ Our project is about directed weighted graph implementation, and a list of algor
 a directed graph is a graph that is made up of a set of vertices connected by edges, where the edges have a direction
 associated with them. And weights assigned to their arrows
 
-**Part 1**:
+### Part 1:
 
 **Graph implementation**
 
@@ -14,7 +14,7 @@ The nodes in the graph are represented by Node class.
 The graph implementation and functionality is in Digraph class
 which implements the GraphInterface
 
-**Part 2**
+### Part 2
 
 **Algorithms:**   
 GraphAlgo implements GraphAlgoInterface.   
