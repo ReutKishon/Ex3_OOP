@@ -14,7 +14,7 @@ The nodes in the graph are represented by Node class.
 The graph implementation and functionality is in Digraph class
 which implements the GraphInterface
 
-### Part 2
+### Part 2:
 
 **Algorithms:**   
 GraphAlgo implements GraphAlgoInterface.   
