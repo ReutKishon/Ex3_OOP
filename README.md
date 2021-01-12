@@ -1,4 +1,4 @@
-Ex3
+*Ex3
 
 Our project is about directed weighted graph implementation, and a list of algorithms that operate on graphs.
 
