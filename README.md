@@ -29,7 +29,7 @@ The algorithms we were required to implement are:
 
 examples of graph plot:
 
-<a href="url"><img src="/graph1.jpeg" align="left" height="200" width="200" ></a>
+<a href="url"><img src="/graph1.jpeg" align="left" height="250" width="350" ></a>
 
 
 
