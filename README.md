@@ -31,7 +31,7 @@ examples of graph plot:
 
 <a href="url"><img src="/graph1.jpeg" align="left" height="250" width="350" ></a>
 
+<a href="url"><img src="/graph2.jpeg" align="left" height="250" width="350" ></a>
 
 
-![graph2](/graph2.jpeg =100x20?raw=true "Optional Title")
 
