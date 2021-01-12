@@ -24,3 +24,4 @@ The algorithms we were required to implement are:
 * connected_component: finds the Strongly Connected Component (SCC) that node id1 is a part of.
 * connected_components: finds all the Strongly Connected Component (SCC) in the graph.
 * plot_graph: plots the graph , a sketch of the graph
+
