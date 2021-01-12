@@ -23,7 +23,9 @@ The algorithms we were required to implement are:
 * shortest_path: finds the distance of the shortest path from node id1 to node id2 using Dijkstra's Algorithm
 * connected_component: finds the Strongly Connected Component (SCC) that node id1 is a part of.
 * connected_components: finds all the Strongly Connected Component (SCC) in the graph.
-* plot_graph: plots the graph , a sketch of the graph
+* save_to_json: saves the graph in JSON format to a file.
+* load_from_json: loads a graph from a json file.
+* plot_graph: plots the graph , a sketch of the graph.
 
 examples of graph plot:
 ![graph1](/graph1.jpeg?raw=true "Optional Title")
