@@ -43,7 +43,7 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
         return self.graph.get_all_v().get(id2).tag, path
 
     def dijkstra(self, src: int, dest: int,  prev: dict):
-        visited = []
+        visited = {k: False for k in self.graph.get_all_v().keys()}
         nodes = []
         for n in self.graph.get_all_v().values():
             if n.key == src:
@@ -56,11 +56,11 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
             rm = hq.heappop(nodes)
             if rm.key == dest:
                 return
-            visited.append(rm)
+            visited[rm.key] = True
             if self.graph.all_out_edges_of_node(rm.key) is not None:
                 for neighbor, weighted in self.graph.all_out_edges_of_node(rm.key).items():
                     node_neighbor = self.graph.get_all_v().get(neighbor)
-                    if node_neighbor not in visited:
+                    if visited[node_neighbor.key] is False:
                         dist = rm.tag + weighted
                         if dist < node_neighbor.tag:
                             node_neighbor.tag = dist
@@ -70,43 +70,57 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
     def connected_component(self, id1: int) -> list:
         if id1 not in self.graph.get_all_v().keys():
             return []
+        cc = self.bfs(id1)
+        cc_reverse = self.graph_reverse(id1)
+
         scc = []
-        self.bfs(self.graph, id1, scc)
-        graph_revers = DiGraph()
-        for i in scc:
-            graph_revers.add_node(i)
-        for i in scc:
-            if self.graph.all_out_edges_of_node(i) is not None:
-                for neighbor, w in self.graph.all_out_edges_of_node(i).items():
-                    graph_revers.add_edge(neighbor, i, w)
-        scc = []
-        self.bfs(graph_revers, id1, scc)
+        for n in cc:
+            if n in cc_reverse:
+                scc.append(n)
         return scc
 
     def connected_components(self) -> List[list]:
         if self.graph is None or self.graph.get_all_v() is None:
             return []
         scc = []
-        seen = []
+        seen = {k: False for k in self.graph.get_all_v().keys()}
         for i in self.graph.get_all_v().keys():
-            if i not in seen:
+            if seen[i] is False:
                 path = self.connected_component(i)
-                seen += path
+                for k in path:
+                    seen[k] = True
                 scc.append(path)
         return scc
 
-    @staticmethod
-    def bfs(graph: GraphInterface, src: int, scc: list):
+    def bfs(self, src: int) -> list:
+        scc = []
         q = [src]
-        visited = [src]
+        visited = {k: False for k in self.graph.get_all_v().keys()}
+        visited[src] = True
         while q:
             rm = q.pop(0)
-            if graph.all_out_edges_of_node(rm) is not None:
-                for n in graph.all_out_edges_of_node(rm).keys():
-                    if n not in visited:
-                        visited.append(n)
+            if self.graph.all_out_edges_of_node(rm) is not None:
+                for n in self.graph.all_out_edges_of_node(rm).keys():
+                    if visited[n] is False:
+                        visited[n] = True
                         q.append(n)
             scc.append(rm)
+        return scc
+
+    def graph_reverse(self, src: int) -> list:
+        scc = []
+        q = [src]
+        visited = {k: False for k in self.graph.get_all_v().keys()}
+        visited[src] = True
+        while q:
+            rm = q.pop(0)
+            if self.graph.all_in_edges_of_node(rm) is not None:
+                for n in self.graph.all_in_edges_of_node(rm).keys():
+                    if visited[n] is False:
+                        visited[n] = True
+                        q.append(n)
+            scc.append(rm)
+        return scc
 
     def load_from_json(self, file_name: str):
         with open(file_name) as complex_data:

@@ -1,4 +1,5 @@
 import timeit
+import time
 
 from DiGraph import DiGraph
 from src.GraphAlgo import GraphAlgo
@@ -31,30 +32,30 @@ def check():
 #     This function tests the naming (main methods of the DiGraph class, as defined in GraphInterface.
 #     :return:
 #     """
-    # g = DiGraph()  # creates an empty directed graph
-    # for n in range(4):
-    #     g.add_node(n)
-    # g.add_edge(0, 1, 1)
-    # g.add_edge(1, 0, 1.1)
-    # g.add_edge(1, 2, 1.3)
-    # g.add_edge(2, 3, 1.1)
-    # g.add_edge(1, 3, 1.9)
-    # g.remove_edge(1, 3)
-    # g.add_edge(1, 3, 10)
-    # print(g)  # prints the __repr__ (func output)
-    # print(g.get_all_v())  # prints a dict with all the graph's vertices.
-    # print(g.all_in_edges_of_node(1))
-    # print(g.all_out_edges_of_node(1))
-    #
-    # g_algo = GraphAlgo.GraphALgo(g)
-    # g_algo.save_to_json('graph.json')
-    #
-    # g_algo2 = GraphAlgo.GraphALgo()
-    # g_algo2.load_from_json('graph.json')
-    # g_algo2.save_to_json('graphAlgo2.json')
+# g = DiGraph()  # creates an empty directed graph
+# for n in range(4):
+#     g.add_node(n)
+# g.add_edge(0, 1, 1)
+# g.add_edge(1, 0, 1.1)
+# g.add_edge(1, 2, 1.3)
+# g.add_edge(2, 3, 1.1)
+# g.add_edge(1, 3, 1.9)
+# g.remove_edge(1, 3)
+# g.add_edge(1, 3, 10)
+# print(g)  # prints the __repr__ (func output)
+# print(g.get_all_v())  # prints a dict with all the graph's vertices.
+# print(g.all_in_edges_of_node(1))
+# print(g.all_out_edges_of_node(1))
+#
+# g_algo = GraphAlgo.GraphALgo(g)
+# g_algo.save_to_json('graph.json')
+#
+# g_algo2 = GraphAlgo.GraphALgo()
+# g_algo2.load_from_json('graph.json')
+# g_algo2.save_to_json('graphAlgo2.json')
 
-    # print(g_algo.shortest_path(0, 3))
-    # g_algo.plot_graph()
+# print(g_algo.shortest_path(0, 3))
+# g_algo.plot_graph()
 
 
 # def check1():
@@ -97,19 +98,20 @@ def check3():
     g_algo = GraphAlgo()
     file = '../data/G_10_80_1.json'
     g_algo.load_from_json(file)
-    start1 = timeit.default_timer()
+    start1 = time.time()
     dist, path = g_algo.shortest_path(8, 2)
     print(dist, path)
-    end1 = timeit.default_timer()
+    end1 = time.time()
     print(end1 - start1)
-    start2 = timeit.default_timer()
+    start2 = time.time()
     print(g_algo.connected_component(9))
-    end2 = timeit.default_timer()
+    end2 = time.time()
     print(end2 - start2)
-    start3 = timeit.default_timer()
+    start3 = time.time()
     print(g_algo.connected_components())
-    end3 = timeit.default_timer()
+    end3 = time.time()
     print(end3 - start3)
+
 
 def check4():
     g_algo = GraphAlgo()
@@ -129,6 +131,7 @@ def check4():
     end3 = timeit.default_timer()
     print(end3 - start3)
 
+
 def check5():
     g_algo = GraphAlgo()
     file = '../data/G_1000_8000_1.json'
@@ -146,6 +149,7 @@ def check5():
     print(g_algo.connected_components())
     end3 = timeit.default_timer()
     print(end3 - start3)
+
 
 def check6():
     g_algo = GraphAlgo()
@@ -165,6 +169,7 @@ def check6():
     end3 = timeit.default_timer()
     print(end3 - start3)
 
+
 def check7():
     g_algo = GraphAlgo()
     file = '../data/G_20000_160000_1.json'
@@ -182,6 +187,7 @@ def check7():
     print(g_algo.connected_components())
     end3 = timeit.default_timer()
     print(end3 - start3)
+
 
 def check8():
     g_algo = GraphAlgo()
@@ -201,8 +207,9 @@ def check8():
     end3 = timeit.default_timer()
     print(end3 - start3)
 
+
 if __name__ == '__main__':
     # start = timeit.default_timer()
-    check8()
+    check3()
     # end = timeit.default_timer()
     # print(end-start)
