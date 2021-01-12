@@ -28,9 +28,10 @@ The algorithms we were required to implement are:
 * plot_graph: plots the graph , a sketch of the graph.
 
 examples of graph plot:
-![graph1](/graph1.jpeg =100x20?raw=true "Optional Title")
 
-<a href="url"><img src="/graph1.jpeg" align="left" height="100" width="100" ></a>
+<a href="url"><img src="/graph1.jpeg" align="left" height="200" width="200" ></a>
+
+
 
 ![graph2](/graph2.jpeg =100x20?raw=true "Optional Title")
 
