@@ -116,4 +116,4 @@ class TestGraphAlgo(unittest.TestCase):
         self.ga.save_to_json('graph.json')
         g_algo2 = GraphAlgo()
         g_algo2.load_from_json('graph.json')
-        self.assertEqual(self.ga.graph, g_algo2.graph)
+        self.assertEqual(self.ga.__graph, g_algo2.__graph)
