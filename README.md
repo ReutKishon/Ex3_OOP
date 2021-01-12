@@ -25,4 +25,8 @@ The algorithms we were required to implement are:
 * connected_components: finds all the Strongly Connected Component (SCC) in the graph.
 * plot_graph: plots the graph , a sketch of the graph
 
-![Alt text](/graph1.jpeg?raw=true "Optional Title")
+examples of graph plot:
+![graph1](/graph1.jpeg?raw=true "Optional Title")
+
+![graph2](/graph2.jpeg?raw=true "Optional Title")
+
