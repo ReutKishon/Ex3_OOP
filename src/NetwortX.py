@@ -61,7 +61,7 @@ def check3():
 def check4():
     g = loading_graph('../data/G_10000_80000_1.json')
 
-    start1 = timeit.default_timer()
+    start1 = time.time()
     print(nx.dijkstra_path(g, 5937, 2100))
     end1 = time.time()
     print(end1 - start1)

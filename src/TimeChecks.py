@@ -3,7 +3,7 @@ import time
 from src.GraphAlgo import GraphAlgo
 
 
-def check3():
+def check1():
     g_algo = GraphAlgo()
     file = '../data/G_10_80_1.json'
     g_algo.load_from_json(file)
@@ -22,7 +22,7 @@ def check3():
     print(end3 - start3)
 
 
-def check4():
+def check2():
     g_algo = GraphAlgo()
     file = '../data/G_100_800_1.json'
     g_algo.load_from_json(file)
@@ -41,7 +41,7 @@ def check4():
     print(end3 - start3)
 
 
-def check5():
+def check3():
     g_algo = GraphAlgo()
     file = '../data/G_1000_8000_1.json'
     g_algo.load_from_json(file)
@@ -60,7 +60,7 @@ def check5():
     print(end3 - start3)
 
 
-def check6():
+def check4():
     g_algo = GraphAlgo()
     file = '../data/G_10000_80000_1.json'
     g_algo.load_from_json(file)
@@ -79,7 +79,7 @@ def check6():
     print(end3 - start3)
 
 
-def check7():
+def check5():
     g_algo = GraphAlgo()
     file = '../data/G_20000_160000_1.json'
     g_algo.load_from_json(file)
@@ -98,7 +98,7 @@ def check7():
     print(end3 - start3)
 
 
-def check8():
+def check6():
     g_algo = GraphAlgo()
     file = '../data/G_30000_240000_1.json'
     g_algo.load_from_json(file)
@@ -119,6 +119,6 @@ def check8():
 
 if __name__ == '__main__':
     # start = timeit.default_timer()
-    check3()
+    check6()
     # end = timeit.default_timer()
     # print(end-start)
