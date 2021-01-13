@@ -1,5 +1,4 @@
 import time
-import timeit
 
 import networkx as nx
 from src.GraphAlgo import GraphAlgo

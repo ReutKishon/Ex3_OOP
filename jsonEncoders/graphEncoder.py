@@ -22,7 +22,7 @@ class GraphSerialize(json.JSONEncoder):
             nodes_array = [dict() for x in range(o.v_size())]
             for node in o.get_all_v():
                 nodes_array[counter] = {}
-                nodes_array[counter]['pos'] = o.get_all_v().get(node).pos
+                nodes_array[counter]['pos'] = o.get_all_v().get(node).get_pos()
                 nodes_array[counter]['id'] = node
                 counter += 1
 
