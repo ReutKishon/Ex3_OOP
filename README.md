@@ -29,9 +29,9 @@ The algorithms we were required to implement are:
 
 examples of graph plot:
 
-<img src="/resources/graph1.jpeg" align="left" height="250" width="350" >
+<img src="/resources/graph1.jpeg" height="250" width="350" >
 
-<img src="/resources/graph2.jpeg" align="left" height="250" width="350" >
+<img src="/resources/graph2.jpeg" height="250" width="350" >
 
 
 jfhsjhfjhdjhdsj
