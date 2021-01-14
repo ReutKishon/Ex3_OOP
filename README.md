@@ -34,7 +34,8 @@ examples of graph plot:
 <img src="/resources/graph2.jpeg" height="250" width="350" >
 
 
-jfhsjhfjhdjhdsj
+### Part 3:
 
+In this part we were required to comparison of runtime of 3 different algorithms(shortest_path, connected_component, connected_components) on a directed weighted graph between 3 implementations: our implementation in java (Ex2 project), our implementation in python (this project) and networkX library.
 
-
+<a href=https://github.com/reutKeyshawn/Ex3_OOP/wiki>More info</a>
