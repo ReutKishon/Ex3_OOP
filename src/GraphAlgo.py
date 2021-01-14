@@ -2,10 +2,8 @@ import heapq as hq
 from typing import List
 from jsonEncoders import graphEncoder
 import json
-
 import matplotlib.pyplot as plt
 import numpy as np
-
 from src.GraphInterface import GraphInterface
 from src import GraphAlgoInterface
 from src.DiGraph import DiGraph

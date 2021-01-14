@@ -47,7 +47,7 @@ class DiGraph(GraphInterface.GraphInterface):
         """
         if id1 in self.__inEdges:
             return self.__inEdges[id1]
-        return None
+        return {}
 
     def all_out_edges_of_node(self, id1: int) -> dict:
         """
@@ -58,7 +58,7 @@ class DiGraph(GraphInterface.GraphInterface):
         """
         if id1 in self.__outEdges:
             return self.__outEdges[id1]
-        return None
+        return {}
 
     def get_mc(self) -> int:
         """
@@ -114,22 +114,20 @@ class DiGraph(GraphInterface.GraphInterface):
         @param node_id: The node_id to remove.
         @return: True if the node was removed successfully, False if not.
         """
-        if self.__nodes[node_id] is None:
+        if node_id not in self.__nodes:
             return False
         self.__mc += 1
+        if node_id in self.__outEdges:
+            for dest in self.__outEdges[node_id]:
+                del self.__inEdges[dest][node_id]
+                self.__edgesCount -= 1
+            del self.__outEdges[node_id]
+        if node_id in self.__inEdges:
+            for src in self.__inEdges[node_id]:
+                del self.__outEdges[src][node_id]
+                self.__edgesCount -= 1
+            del self.__inEdges[node_id]
 
-        for dest in self.__outEdges[node_id]:
-            del self.__inEdges[dest][node_id]
-            self.__edgesCount -= 1
-            self.__mc += 1
-
-        for src in self.__inEdges[node_id]:
-            del self.__outEdges[src][node_id]
-            self.__edgesCount -= 1
-            self.__mc += 1
-
-        del self.__outEdges[node_id]
-        del self.__inEdges[node_id]
         del self.__nodes[node_id]
         return True
 
