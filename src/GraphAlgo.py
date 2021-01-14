@@ -161,9 +161,17 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
         @param file_name: The path to the json file
         @return: True if the loading was successful, False if not.
         """
-        with open(file_name) as complex_data:
-            data = complex_data.read()
-            self.__graph = json.loads(data, object_hook=self.deserialize_objects)
+        try:
+            with open(file_name) as complex_data:
+                data = complex_data.read()
+                self.__graph = json.loads(data, object_hook=self.deserialize_objects)
+                return True
+        except ValueError:
+            print('Decoding JSON has failed')
+            return False
+        except IOError:
+            print('not found')
+            return False
 
     def save_to_json(self, file_name: str) -> bool:
         """
@@ -171,8 +179,17 @@ class GraphAlgo(GraphAlgoInterface.GraphAlgoInterface):
         @param file_name: The path to the out file
         @return: True if the save was successful, False if not.
         """
-        with open(file_name, 'w') as f:
-            json.dump(self.__graph, f, cls=graphEncoder.GraphSerialize, indent=4)
+        try:
+            with open(file_name, 'w') as f:
+                json.dump(self.__graph, f, cls=graphEncoder.GraphSerialize, indent=4)
+                return True
+        except TypeError:
+            print("Unable to serialize the object")
+            return False
+
+        except IOError:
+            print('not found')
+            return False
 
     @staticmethod
     def deserialize_objects(obj):
